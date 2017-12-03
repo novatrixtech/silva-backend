@@ -11,7 +11,7 @@ const successFactor float64 = 0.70
 
 //EvaluateWord does all word analysis and classification
 func EvaluateWord(text string, matter string) (word model.Word) {
-	text = strings.ToLower(strings.TrimSpace(text))
+	text = strings.ToLower(strings.Replace(text, " ", "", -1))
 	word.Length = len(text)
 	word.Text = text
 	word.Matter.Name = matter
