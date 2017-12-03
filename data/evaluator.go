@@ -23,7 +23,7 @@ func EvaluateCondition(words *[]model.Word, evaluationChars string, nonExistentC
 	var allOptions, allFoundChars, successChars string
 	var predictionAccuracy float64
 	log.Println(" ")
-	log.Println("==> Evalutating this request: ", evaluationChars, " - NonExistentChars: ", nonExistentChars)
+	log.Println("===> Evalutating this request: ", evaluationChars, " - NonExistentChars: ", nonExistentChars)
 	for _, word := range *words {
 		points, otherOptions, foundChars := calcWordValues(word, evaluationChars, nonExistentChars, allFoundChars)
 		if points > successFactor {
@@ -40,13 +40,9 @@ func EvaluateCondition(words *[]model.Word, evaluationChars string, nonExistentC
 			}
 		}
 	}
-	// if len(possibilities) > 0 {
-	// 	return
-	// }
 	for _, char := range allFoundChars {
 		allOptions = strings.Replace(allOptions, string(char), "", -1)
 	}
-	//log.Println("Alloptions: ", allOptions)
 	successChars, numberOccurrencies := wordCount(allOptions)
 	predictionAccuracy = float64(numberOccurrencies) / float64(len(allOptions))
 	poss := model.Possibility{}
