@@ -11,7 +11,7 @@ type Possibility struct {
 	Accuracy float64 `json:"accuracy"`
 }
 
-//ResponseKnowledge represents knowledge name
-type ResponseKnowledge struct {
+//Knowledge represents knowledge name
+type Knowledge struct {
 	Name string `json:"name"`
 }

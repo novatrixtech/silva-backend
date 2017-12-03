@@ -11,9 +11,9 @@ import (
 //ListKnowledges handles request to list knowledges known by the Bot
 func ListKnowledges(c echo.Context) (err error) {
 
-	resp := []model.ResponseKnowledge{}
+	resp := []model.Knowledge{}
 	for knowledge := range data.KnowledgeBase {
-		tmp := model.ResponseKnowledge{}
+		tmp := model.Knowledge{}
 		tmp.Name = knowledge
 		resp = append(resp, tmp)
 	}

@@ -19,7 +19,7 @@ func NewGame(c echo.Context) (err error) {
 	var wordsSet []model.Word
 
 	for knowledge, words := range data.KnowledgeBase {
-		if knowledge == strings.ToLower(strings.TrimSpace(req.Matter.Name)) {
+		if knowledge == strings.ToLower(strings.TrimSpace(req.Knowledge.Name)) {
 			wordsSet = words
 		}
 	}
