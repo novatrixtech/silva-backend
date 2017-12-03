@@ -10,3 +10,8 @@ type Possibility struct {
 	Text     string  `json:"text"`
 	Accuracy float64 `json:"accuracy"`
 }
+
+//ResponseKnowledge represents knowledge name
+type ResponseKnowledge struct {
+	Name string `json:"name"`
+}
