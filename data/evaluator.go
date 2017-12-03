@@ -19,11 +19,13 @@ func EvaluateWord(text string, matter string) (word model.Word) {
 }
 
 //EvaluateCondition does analysis
-func EvaluateCondition(words *[]model.Word, evaluationLetters string, nonExistentLetters string) (possibilities []model.Possibility) {
+func EvaluateCondition(words *[]model.Word, evaluationChars string, nonExistentChars string) (possibilities []model.Possibility) {
 	var allOptions, allFoundChars, successChars string
 	var predictionAccuracy float64
+	log.Println(" ")
+	log.Println("==> Evalutating this request: ", evaluationChars, " - NonExistentChars: ", nonExistentChars)
 	for _, word := range *words {
-		points, otherOptions, foundChars := calcWordValues(word, evaluationLetters, nonExistentLetters, allFoundChars)
+		points, otherOptions, foundChars := calcWordValues(word, evaluationChars, nonExistentChars, allFoundChars)
 		if points > successFactor {
 			poss := model.Possibility{}
 			poss.Text = word.Text
@@ -31,16 +33,16 @@ func EvaluateCondition(words *[]model.Word, evaluationLetters string, nonExisten
 			possibilities = append(possibilities, poss)
 		}
 		if points > 0 {
-			log.Println("points: ", points, " otherOptions: ", otherOptions, " foundChars: ", foundChars)
+			log.Println("Word: ", word.Text, " points: ", points, " otherOptions: ", otherOptions, " foundChars: ", foundChars)
 			allOptions += otherOptions
 			if len(foundChars) > 0 {
 				allFoundChars += foundChars
 			}
 		}
 	}
-	if len(possibilities) > 0 {
-		return
-	}
+	// if len(possibilities) > 0 {
+	// 	return
+	// }
 	for _, char := range allFoundChars {
 		allOptions = strings.Replace(allOptions, string(char), "", -1)
 	}
