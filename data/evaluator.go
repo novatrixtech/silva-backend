@@ -44,12 +44,15 @@ func EvaluateCondition(words *[]model.Word, evaluationChars string, nonExistentC
 		allOptions = strings.Replace(allOptions, string(char), "", -1)
 	}
 	successChars, numberOccurrencies := wordCount(allOptions)
-	predictionAccuracy = float64(numberOccurrencies) / float64(len(allOptions))
+	if len(allOptions) > 0 && numberOccurrencies > 0 {
+		predictionAccuracy = float64(numberOccurrencies) / float64(len(allOptions))
+	}
+	log.Println("[EvaluateCondition] Letter: ", successChars, " occurrency: ", numberOccurrencies, " AllOptions: ", allOptions, " len(allOptions): ", len(allOptions), " accuracy: ", predictionAccuracy)
 	poss := model.Possibility{}
 	poss.Text = successChars
 	poss.Accuracy = predictionAccuracy
 	possibilities = append(possibilities, poss)
-	//log.Println("Letter: ", successLetters, " occurrency: ", numberOccurrencies, " AllOptions: ", allOptions, " len(allOptions): ", len(allOptions), " accuracy: ", float64(numberOccurrencies/len(allOptions)))
+
 	return
 }
 
@@ -97,8 +100,7 @@ func calcWordValues(word model.Word, evaluationChars string, nonExistentChars st
 func wordCount(text string) (char string, numberOccurrencies int) {
 	var counter int
 	var selectedLetter byte
-	letters := []byte(text)
-	//amazonas
+	letters := []byte(strings.Replace(text, " ", "", -1))
 	for _, letter := range letters {
 		if selectedLetter == 0 {
 			selectedLetter = letter
