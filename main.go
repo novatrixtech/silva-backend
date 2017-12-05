@@ -15,6 +15,7 @@ func init() {
 	data.KnowledgeBase["rios"] = data.LoadDataFromFiles("Silva-Conhecimento - rios.csv")
 	data.KnowledgeBase["capitaisbrasil"] = data.LoadDataFromFiles("Silva-Conhecimento - capitaisbrasil.csv")
 	data.KnowledgeBase["estadosbrasil"] = data.LoadDataFromFiles("Silva-Conhecimento - estadosbrasil.csv")
+	data.KnowledgeBase["paises"] = data.LoadDataFromFiles("Silva-Conhecimento - paises.csv")
 	/*
 			Debug
 		log.Println("itens: ", len(data.Words))
