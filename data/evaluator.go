@@ -7,7 +7,7 @@ import (
 	"github.com/novatrixtech/silva-backend/model"
 )
 
-const successFactor float64 = 0.70
+const confidenceFactor float64 = 0.70
 
 //EvaluateWord does all word analysis and classification
 func EvaluateWord(text string, matter string) (word model.Word) {
@@ -26,7 +26,8 @@ func EvaluateCondition(words *[]model.Word, evaluationChars string, nonExistentC
 	log.Println("===> Evalutating this request: ", evaluationChars, " - NonExistentChars: ", nonExistentChars)
 	for _, word := range *words {
 		points, otherOptions, foundChars := calcWordValues(word, evaluationChars, nonExistentChars, allFoundChars)
-		if points >= successFactor {
+		//IMPORTANT: PAY ATTENTION TO CONFIDENCE FACTOR
+		if points >= confidenceFactor {
 			poss := model.Possibility{}
 			poss.Text = word.Text
 			poss.Accuracy = points
