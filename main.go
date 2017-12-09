@@ -17,15 +17,6 @@ func init() {
 	data.KnowledgeBase["estadosbrasil"] = data.LoadDataFromFiles("Silva-Conhecimento - estadosbrasil.csv")
 	data.KnowledgeBase["paises"] = data.LoadDataFromFiles("Silva-Conhecimento - paises.csv")
 	data.KnowledgeBase["frutas"] = data.LoadDataFromFiles("Silva-Conhecimento - frutas.csv")
-	/*
-			Debug
-		log.Println("itens: ", len(data.Words))
-		for matter, words := range data.Words {
-			for _, word := range words {
-				log.Printf("matter: %s - word: %+v\n", matter, word)
-			}
-		}
-	*/
 }
 
 func main() {
