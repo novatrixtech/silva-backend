@@ -26,7 +26,7 @@ func EvaluateCondition(words *[]model.Word, evaluationChars string, nonExistentC
 	log.Println("===> Evalutating this request: ", evaluationChars, " - NonExistentChars: ", nonExistentChars)
 	for _, word := range *words {
 		points, otherOptions, foundChars := calcWordValues(word, evaluationChars, nonExistentChars, allFoundChars)
-		if points > successFactor {
+		if points >= successFactor {
 			poss := model.Possibility{}
 			poss.Text = word.Text
 			poss.Accuracy = points
